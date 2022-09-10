@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">  
+        <style>
+            #div{
+                background-color: lightblue;
+                border-style: outset;
+                text-align: center;
+                text-shadow: 1px 1px rgb(0, 106, 255);
+            }
+            table,td {
+                border: 1px solid;
+                border-style: outset;
+                background-color: rgb(230, 173, 229);
+            }
+        </style>    
+    </head>
+
+    <body>
+        <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div> 
+        <table id="poxa"><button onclick="carregarTabela()">Carregando Tabela</button></table>  
+
+    </body>   
+
+    <script>
+        function transformar(item){
+            return `<div id="div">${item}</div>`
+        }
+
+        let cervejas = ["Guiness", "Desperados", "Becks"]
+
+        function carregarDiv(){
+            let div = document.getElementById("meu amor")
+            //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`]
+            let cervejasHtml = cervejas.map(transformar) 
+            div.innerHTML = [`${cervejasHtml.join("\n")}`, `<div><button onclick="ordenarDiv()">Ordenar</button></div>`, `<div><button onclick="embaralharDiv()">Embaralhar</button></div>`]
+        }
+        let botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", carregarDiv)
+
+        function ordenarDiv(){
+            let div = document.getElementById("meu amor")
+            let cervs = cervejas.sort()
+            let cervejasHtml = cervs.map(transformar) 
+            div.innerHTML = [`${cervejasHtml.join("\n")}`, `<div><button onclick="embaralharDiv()">Embaralhar</button></div>`]
+        }
+
+        function embaralharDiv(){
+            let div = document.getElementById("meu amor")
+            let cervs = cervejas.sort(function(){return 0.5 - Math.random()});
+            let cervejasHtml = cervs.map(transformar) 
+            div.innerHTML = [`${cervejasHtml.join("\n")}`, `<div><button onclick="ordenarDiv()">Ordenar</button></div>`, `<div><button onclick="embaralharDiv()">Embaralhar</button></div>`]
+        }
+
+        function tranformarColuna(item){
+            return `<tr><td><b>${item}</b></td></tr>`
+        }
+
+        function carregarTabela(){
+            let table = document.getElementById("poxa")
+            let cervs = cervejas.map(tranformarColuna)
+            table.innerHTML = `${cervs.join("\n")}`
+
+        }
+
+
+    </script>
+</html>
