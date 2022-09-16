@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">  
+        <link href="css.css" rel="stylesheet">   
+    </head>
+
+    <body>
+        <div id="meu amor"><a id="linkCarregar">Carregando Desenhos Animados...</a></div> 
+        <table id="poxa"><a id="carregarTabela">Carregando Tabela</a></table>  
+
+    </body>   
+
+    <script>
+        const desenhos = ["Hora de Aventura", "Bee and PuppyCat", "Star vs as forças do mal"]
+
+        //function carregarDiv(){
+        const carregarDiv = (desen) => {
+            const div = document.getElementById("meu amor")
+            const desenhosHtml = desen.map(item => `<h1>${item}</h1>`) 
+            div.innerHTML = [`${desenhosHtml.join("\n")} <div><a id="ordenarDiv">Ordenar</a> <a id="embaralharDiv">Embaralhar</a></div>`]
+            carregarClick()
+        }
+
+        //function ordenarDiv(){
+        const ordenarDiv  = (desen) => {
+            const div = document.getElementById("meu amor")
+            const des = desen.sort()
+            const desenhosHtml = des.map(item => `<h1>${item}</h1>`) 
+            div.innerHTML = [`${desenhosHtml.join("\n")} <div><a id="embaralharDiv">Embaralhar</a></div>`]
+            carregarClick()
+        }
+
+        //function embaralharDiv(){
+        const embaralharDiv  = (desen) => {
+            const div = document.getElementById("meu amor")
+            const des = desen.sort(function(){return 0.5 - Math.random()});
+            const desenhosHtml = des.map(item => `<h1>${item}</h1>`) 
+            div.innerHTML = [`${desenhosHtml.join("\n")} <div><a id="ordenarDiv">Ordenar</a> <a id="embaralharDiv">Embaralhar</a></div>`]
+            carregarClick()
+        }
+
+        //function carregarTabela(){
+        const carregarTabela  = (desen) => {
+            const table = document.getElementById("poxa")
+            const des = desen.map(item => `<tr><td><b>${item}</b></td></tr>`)
+            table.innerHTML = `${des.join("\n")}`
+        }
+
+        const carregarClick = () =>{
+            let emb = document.getElementById("embaralharDiv")
+            emb.addEventListener("click", () => embaralharDiv(desenhos))
+
+            let ord = document.getElementById("ordenarDiv")
+            ord.addEventListener("click", () => ordenarDiv(desenhos))
+        }
+
+
+        let link = document.getElementById("linkCarregar")
+        link.addEventListener("click", () => carregarDiv(desenhos))
+
+        let tabela = document.getElementById("carregarTabela")
+        tabela.addEventListener("click", () => carregarTabela(desenhos))
+
+
+    </script>
+</html>
