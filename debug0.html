@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="UTF-8">      
+   </head>
+   
+   <body>
+      <div>
+         <button id="botao1">Teste 1</button>
+         <button id="botao2">Teste 2</button>
+         <button id="botao3">Teste 3</button>
+         <button id="botao4">Teste 4</button>
+         <button id="botao5">Teste 5</button>
+      </div>
+      <div id="numeros"></div>            
+   </body>   
+   
+   <script>
+      let numeros = []
+    
+      const gerarVetor = (quantidade=5, valorMaximo=10) => {
+        let res= Array.from({length:quantidade}, () => Math.floor(Math.random()*valorMaximo))
+         //let res = new Array(quantidade)
+         //res.map(res.push(Math.floor(Math.random()*valorMaximo)))
+         //for (let i=0; i<res.length; i++){
+            //res[i] = Math.floor(Math.random()*valorMaximo)
+         //}
+         return res
+      }
+
+      const carregarDiv1 = objs => {
+         const div = document.getElementById("numeros")
+         let html = ''
+         var soma = objs.reduce(function(soma, i) {return soma + i;});
+         objs.push(soma)
+         for (let i = 0; i<objs.length; i++){
+            let o = objs[i]
+            html = `${html} <div>${o}</div>`
+         }
+         div.innerHTML = html
+      }
+
+      const carregarDiv2 = objs => {
+         const div = document.getElementById("numeros")
+         let html = ''
+         var soma = objs.reduce(function(soma, i) {return soma + i;});
+         objs.push(soma)
+         for (let o of objs){
+            html = `${html} <div>${o}</div>`
+         }
+         div.innerHTML = html
+      }
+
+      const carregarDiv3 = objs => {
+         const div = document.getElementById("numeros")
+         let html = ''
+         var soma = objs.reduce(function(soma, i) {return soma + i;});
+         objs.push(soma)
+         objs.forEach(o => {
+            html+= `<div>${o}</div>`      
+         });
+         div.innerHTML = html
+      }
+      
+      const carregarDiv4 = objs => {
+         const div = document.getElementById("numeros")
+         var soma = objs.reduce(function(soma, i) {return soma + i;});
+         objs.push(soma)
+         const cervejasHtml = objs.map( item => `<div>${item}</div>` ) 
+         div.innerHTML = `${cervejasHtml.join("\n")}`
+      }
+
+      const carregarDiv5 = objs => {
+         const div = document.getElementById("numeros")
+         var soma = objs.reduce(function(soma, i) {return soma + i;});
+         objs.push(soma)
+         const html = objs.map( item => `<div>${item}</div>` ) 
+         div.innerHTML = `${html.join("\n")}`
+      }
+      
+
+      let botao1 = document.getElementById("botao1")
+      let botao2 = document.getElementById("botao2")
+      let botao3 = document.getElementById("botao3")
+      let botao4 = document.getElementById("botao4")
+      let botao5 = document.getElementById("botao5")
+      
+      botao1.addEventListener("click", e => carregarDiv1(gerarVetor()))
+      botao2.addEventListener("click", e => carregarDiv2(gerarVetor()))
+      botao3.addEventListener("click", e => carregarDiv3(gerarVetor()))
+      botao4.addEventListener("click", e => carregarDiv4(gerarVetor()))
+      botao5.addEventListener("click", e => carregarDiv5(gerarVetor()))
+                       
+   </script>
+</html>
