@@ -13,6 +13,7 @@
 
     <script>
         let cabecalho=["Nome", "Alcool", "Amargor", "Estilo"]
+        let objeto =["name", "alcohol", "ibu", "style"]
         let cervejas = [
             {
                 name: "Guiness", 
@@ -33,10 +34,10 @@
                 style: "Cream Ale",          
             }
         ]
-        const carregarDiv = (cs, id="cervejasDiv", cabe=cabecalho) => {
+        const carregarDiv = (cs, id="cervejasDiv", cabe=cabecalho, obj=objeto) => {
             const div = document.getElementById(id)
             const cabecalho = cabe.map(item => `<th> ${item}</th>` ) 
-            const itensHtml = cs.map( ({name,alcohol,ibu,style}) => `<tr><td>${name}</td><td>${alcohol}</td> <td>${ibu}</td> <td>${style}</td></tr>` ) 
+            const itensHtml = cs.map( item => `<tr>`+ obj.map(objet=> `<td>${item[objet]}</td>`)+`</tr>` ) 
             div.innerHTML = `<tr>${cabecalho}</tr> ${itensHtml.join("\n")}`
         }
         let botao = document.getElementById("botaoCarregar")
