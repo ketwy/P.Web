@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">   
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">   
+    </head>
+
+    <body>
+        <div class="d-grid gap-2"><button id="botaoCarregar" class="btn btn-outline-secondary">Carregando cervejas...</button></div>
+        <table id="cervejasDiv" class="table table-hover table-dark"></table>            
+    </body>   
+
+    <script>
+        let cabecalho=["Nome", "Alcool", "Amargor", "Estilo"]
+        let cervejas = [
+            {
+                name: "Guiness", 
+                alcohol: "10%" , 
+                ibu: "20",
+                style: "Red Ale",       
+            }, 
+            {
+                name: "Desperados",
+                alcohol: "6%", 
+                ibu: "60",
+                style: "Imperial Stout",       
+            }, 
+            {
+                name: "Becks",
+                alcohol: "5%",  
+                ibu: "35",
+                style: "Cream Ale",          
+            }
+        ]
+        const carregarDiv = (cs, id="cervejasDiv", cabe=cabecalho) => {
+            const div = document.getElementById(id)
+            const cabecalho = cabe.map(item => `<th> ${item}</th>` ) 
+            const itensHtml = cs.map( ({name,alcohol,ibu,style}) => `<tr><td>${name}</td><td>${alcohol}</td> <td>${ibu}</td> <td>${style}</td></tr>` ) 
+            div.innerHTML = `<tr>${cabecalho}</tr> ${itensHtml.join("\n")}`
+        }
+        let botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", () => carregarDiv(cervejas) )                 
+    </script>
+</html>
