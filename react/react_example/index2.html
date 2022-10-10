@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+   <head>
+      <title>ReactUm</title> 
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">  
+   </head>
+
+   <body>
+      <div id="app"></div>
+      <div id="app2">
+      </div>
+
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script src="libs/babel.js"></script>
+      <script type="text/babel">
+
+         const TabelaBebidas = () => {
+            return    <div id="app">
+                        <table id="tabela" className="table table-hover table-dark">
+                           <thead>
+                              <tr><th>Nome</th><th>Marca</th></tr>
+                           </thead>
+                           <tbody>
+                              <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                           </tbody>
+                        </table>
+                     </div>
+         }
+
+         const Cabecalho = () => {
+            return <h1>Minha Tabela de Bebidas</h1>
+         }
+
+         let cervejas = [
+            {
+                name: "Guiness", 
+                alcohol: "10%" , 
+                ibu: "20",
+                style: "Red Ale",       
+            }, 
+            {
+                name: "Desperados",
+                alcohol: "6%", 
+                ibu: "60",
+                style: "Imperial Stout",       
+            }, 
+            {
+                name: "Becks",
+                alcohol: "5%",  
+                ibu: "35",
+                style: "Cream Ale",          
+            }
+        ]
+
+        const CarregarDiv = cs => {
+            const div = document.getElementById("batata")
+            const itensHtml = cs.map( item => `<tr> <td>${item['name']}</td><td>${item['alcohol']}</td><td>${item['ibu']}</td><td>${item['style']}</td></tr>` )
+            div.innerHTML =`<thead>
+                              <tr>
+                                 <th>Nome</th>
+                                 <th>Alcool</th>
+                                    <th>Ibu</th>
+                                 <th>Estilo</th>
+                              </tr>
+                           </thead> 
+                           <tbody>
+                              ${itensHtml.join("\n")} 
+                           </tbody>`          
+        }
+
+        const Tabela =()=> {
+         return <div>
+               <table id="batata" className="table table-hover table-dark"></table>
+            </div>
+        }
+
+        const Botao = () => {
+         return <button id="botaoCarregar" className="btn btn-outline-secondary">Carregando...</button>
+        }
+
+         ReactDOM.render(
+            <div>
+               <Cabecalho/>
+               <TabelaBebidas/>
+            
+            </div>
+            ,
+            document.getElementById("app"))
+         
+            ReactDOM.render(
+               <div>
+                  <Botao/>
+                  <Tabela/>
+               </div>
+            ,
+            document.getElementById("app2"))
+
+            let botao = document.getElementById("botaoCarregar")
+            botao.addEventListener("click", () => CarregarDiv(cervejas) )  
+        
+      </script>
+   </body>
+</html>
