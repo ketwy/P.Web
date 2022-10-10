@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+   <head>
+      <title>ReactZero</title> 
+   </head>
+
+   <body>
+      <div id="app"></div>
+      <div id="app2"></div>
+
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script>
+        ReactDOM.render(
+            React.createElement(
+                'h1',
+                {id: 'my-heading'},
+                React.createElement(
+                    'span',
+                    null,
+                    'React ',
+                    React.createElement('em', null, 'é muito'),
+                ),
+                ' massa!'
+                ),
+        document.getElementById('app')
+        );
+
+        ReactDOM.render(
+            React.createElement(
+                'table',
+                {border:'2px'},
+                React.createElement(
+                    'tr',
+                    null,
+                    React.createElement('td', null, 'elemento 1'),
+                    React.createElement('td', null, 'elemento 2'),
+                ),
+                React.createElement(
+                    'tr',
+                    null,
+                    React.createElement('td', null, 'elemento 3'),
+                    React.createElement('td', null, 'elemento 4'),
+                )
+            ),
+        document.getElementById('app2')
+        );
+        
+      </script>
+   </body>
+</html>
