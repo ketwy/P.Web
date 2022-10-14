@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/> <!-- adicionar na receita, pois sem isso o babel da erro-->
+        <title>ReceitaReact - 3</title>      
+    </head>
+    <body>
+        <div id="app">
+        </div>
+
+        <script src="libs/react.js"></script>
+        <script src="libs/react-dom.js"></script>
+        <script src="libs/babel.js"></script>
+        <script type="text/babel">
+            const TabelaBebidas = ({titulo, cabecalhos,valores,propriedades}) => {
+                return (
+                    <div>
+                        <h1>{titulo}</h1>
+                        <table id="tabela" border="1">
+                            <thead>
+                                <tr>{cabecalhos.map((item,index)=><th key={index}>{item}</th>)}</tr>
+                            </thead>
+                            <tbody>
+                                {valores.map((item, index) => 
+                                <tr key={index}>
+                                    {propriedades.map((prop, index) => <td key={index}>{item[prop]}</td>)} 
+                                </tr>)}
+                            </tbody>
+                        </table>
+                    </div>
+                )  
+            }
+            const valoresCabecalhos = ["Nome","Indice alcólico","Amargor", "Estilo"]
+            const valoresPropriedades = ["name","alcohol","ibu", "style"]
+            const valoresConteudo = [
+                {
+                    name: "Guiness", 
+                    alcohol: "10%" , 
+                    ibu: "20",
+                    style: "Red Ale",       
+                }, 
+                {
+                    name: "Desperados",
+                    alcohol: "6%", 
+                    ibu: "60",
+                    style: "Imperial Stout",       
+                }, 
+                {
+                    name: "Becks",
+                    alcohol: "5%",  
+                    ibu: "35",
+                    style: "Cream Ale",          
+                }
+            ]
+            ReactDOM.render(
+                <TabelaBebidas titulo="minha tabela de cana" cabecalhos={valoresCabecalhos} valores={valoresConteudo} propriedades={valoresPropriedades} />,
+
+                document.getElementById("app"))
+        </script>
+    </body>
+</html>
