@@ -1,22 +1,20 @@
 export default function Movies({ data }) {
   return (
     <div>
-      {Array.isArray(data.Search) ? (
-        data.Search.map((m) => (
-          <div>
-            <img src={m.Poster}></img>
-            <br />
-            {m.Title} --- {m.Year}
-            <hr />
-          </div>
-        ))
-      ) : (
-        <div>
-          <img src={data.Poster}></img>
-          <br />
-          {data.Title} --- {data.Year}
-        </div>
-      )}
+      <table>
+        <tbody>
+          {data.Search.map((m) => (
+            <tr>
+              <td>
+                <img src={m.Poster} />
+              </td>
+              <td>
+                {m.Title} --- {m.Year}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
